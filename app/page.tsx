@@ -169,7 +169,7 @@ const products = [
     href: '#',
     price: '$50',
     availability: 'White and Black',
-    imageSrc: '/hero-image.png',
+    imageSrc: '/product1.png',
     imageAlt: 'White fabric pouch with white zipper, black zipper pull, and black elastic loop.',
   },
   {
@@ -178,7 +178,7 @@ const products = [
     href: '#',
     price: '$140',
     availability: 'Washed Black',
-    imageSrc: '/hero-image.png',
+    imageSrc: '/product2.png',
     imageAlt: 'Front of tote bag with washed black canvas body, black straps, and tan leather handles and accents.',
   },
   {
@@ -187,7 +187,7 @@ const products = [
     href: '#',
     price: '$220',
     availability: 'Blue',
-    imageSrc: '/hero-image.png',
+    imageSrc: '/product3.png',
     imageAlt:
       'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
   },
@@ -197,7 +197,7 @@ const products = [
     href: '#',
     price: '$50',
     availability: 'White and Black',
-    imageSrc: '/hero-image.png',
+    imageSrc: '/product4.png',
     imageAlt: 'White fabric pouch with white zipper, black zipper pull, and black elastic loop.',
   },
   {
@@ -205,8 +205,8 @@ const products = [
     name: 'Zip Tote Basket',
     href: '#',
     price: '$140',
-    availability: 'Washed Black',
-    imageSrc: '/hero-image.png',
+    availability: 'Washed Black 4',
+    imageSrc: '/product5.png',
     imageAlt: 'Front of tote bag with washed black canvas body, black straps, and tan leather handles and accents.',
   },
   {
@@ -215,7 +215,7 @@ const products = [
     href: '#',
     price: '$220',
     availability: 'Blue',
-    imageSrc: '/hero-image.png',
+    imageSrc: '/product6.png',
     imageAlt:
       'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
   },
@@ -225,7 +225,7 @@ const products = [
     href: '#',
     price: '$50',
     availability: 'White and Black',
-    imageSrc: '/hero-image.png',
+    imageSrc: '/product7.png',
     imageAlt: 'White fabric pouch with white zipper, black zipper pull, and black elastic loop.',
   },
   {
@@ -234,7 +234,7 @@ const products = [
     href: '#',
     price: '$140',
     availability: 'Washed Black',
-    imageSrc: '/hero-image.png',
+    imageSrc: '/product8.png',
     imageAlt: 'Front of tote bag with washed black canvas body, black straps, and tan leather handles and accents.',
   },
   {
@@ -243,7 +243,7 @@ const products = [
     href: '#',
     price: '$220',
     availability: 'Blue',
-    imageSrc: '/hero-image.png',
+    imageSrc: '/product4.png',
     imageAlt:
       'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
   },
@@ -253,7 +253,7 @@ const products = [
     href: '#',
     price: '$50',
     availability: 'White and Black',
-    imageSrc: '/hero-image.png',
+    imageSrc: '/product2.png',
     imageAlt: 'White fabric pouch with white zipper, black zipper pull, and black elastic loop.',
   },
   {
@@ -262,7 +262,7 @@ const products = [
     href: '#',
     price: '$140',
     availability: 'Washed Black',
-    imageSrc: '/hero-image.png',
+    imageSrc: '/product5.png',
     imageAlt: 'Front of tote bag with washed black canvas body, black straps, and tan leather handles and accents.',
   },
   {
@@ -271,7 +271,7 @@ const products = [
     href: '#',
     price: '$220',
     availability: 'Blue',
-    imageSrc: '/hero-image.png',
+    imageSrc: '/product4.png',
     imageAlt:
       'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
   },
@@ -290,7 +290,7 @@ const features = [
     name: 'Eco-Friendly',
     description:
       'These products are environmentally friendly, contributing to a cleaner planet.',
-    icon: CloudArrowUpIcon,
+    icon: "/eco-friendly-icon.svg",
   },
   {
     name: 'Effective',
@@ -307,17 +307,17 @@ const features = [
 const incentives = [
   {
     name: 'Eco-Friendly',
-    imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-shipping-simple.svg',
+    imageSrc: '/eco-friendly-icon.svg',
     description: "These products are environmentally friendly, contributing to a cleaner planet.",
   },
   {
     name: 'Effective',
-    imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-warranty-simple.svg',
+    imageSrc: '/effective-icon.svg',
     description: "Despite being eco-friendly, they are just as effective as traditional cleaning products.",
   },
   {
     name: 'Wide Variety',
-    imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-exchange-simple.svg',
+    imageSrc: '/wide-variety-icon.svg',
     description: "We offer a range of products, from surface cleaners to laundry detergents, catering to all home cleaning needs.",
   },
 ]
@@ -325,17 +325,17 @@ const incentives = [
 const incentives2 = [
   {
     name: 'Good for the Planet',
-    imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-shipping-simple.svg',
+    imageSrc: '/good-for-the-planet-icon.svg',
     description: "By choosing our products, customers contribute to a healthier planet.",
   },
   {
     name: 'Safe for Use',
-    imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-warranty-simple.svg',
+    imageSrc: '/safe-for-use-icon.svg',
     description: "Our products are safe for your home and family.",
   },
   {
     name: 'Cost-Efficient',
-    imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-exchange-simple.svg',
+    imageSrc: '/cost-efficient-icon.svg',
     description: "Despite being eco-friendly, our products are competitively priced.",
   },
 ]
@@ -359,7 +359,7 @@ const testimonials = [
           name: 'Leslie Alexander',
           handle: 'lesliealexander',
           imageUrl:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'https&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         },
       },
       {
@@ -619,68 +619,6 @@ const Home = () => {
                   </button>
                 </div>
 
-                {/* Links */}
-                <Tab.Group as="div" className="mt-2">
-                  <div className="border-b border-gray-200">
-                    <Tab.List className="-mb-px flex space-x-8 px-4">
-                      {navigation.categories.map((category, index) => (
-                        <Tab
-                          key={category.name+index}
-                          className={({ selected }) =>
-                            classNames(
-                              selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent ',
-                              'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium'
-                            )
-                          }
-                        >
-                          {category.name}
-                        </Tab>
-                      ))}
-                    </Tab.List>
-                  </div>
-                  <Tab.Panels as={Fragment}>
-                    {navigation.categories.map((category, index) => (
-                      <Tab.Panel key={category.name+index} className="space-y-10 px-4 pb-8 pt-10">
-                        <div className="grid grid-cols-2 gap-x-4">
-                          {category.featured.map((item, index) => (
-                            <div key={item.name+index} className="group relative text-sm">
-                              <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                <img src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" />
-                              </div>
-                              <a href={item.href} className="mt-6 block font-medium ">
-                                <span className="absolute inset-0 z-10" aria-hidden="true" />
-                                {item.name}
-                              </a>
-                              <p aria-hidden="true" className="mt-1">
-                                Shop now
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                        {category.sections.map((section, index) => (
-                          <div key={section.name+index}>
-                            <p id={`${category.id}-${section.id}-heading-mobile`} className="font-medium ">
-                              {section.name}
-                            </p>
-                            <ul
-                              role="list"
-                              aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
-                              className="mt-6 flex flex-col space-y-6"
-                            >
-                              {section.items.map((item, index) => (
-                                <li key={item.name+index} className="flow-root">
-                                  <a href={item.href} className="-m-2 block p-2 ">
-                                    {item.name}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </Tab.Panel>
-                    ))}
-                  </Tab.Panels>
-                </Tab.Group>
 
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   {navigation.pages.map((page, index) => (
@@ -692,18 +630,6 @@ const Home = () => {
                   ))}
                 </div>
 
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium ">
-                      Sign in
-                    </a>
-                  </div>
-                  <div className="flow-root">
-                    <a href="#" className="-m-2 block p-2 font-medium ">
-                      Create account
-                    </a>
-                  </div>
-                </div>
 
                 <div className="border-t border-gray-200 px-4 py-6">
                   <a href="#" className="-m-2 flex items-center p-2">
@@ -750,114 +676,7 @@ const Home = () => {
                 </a>
               </div>
 
-              {/* Flyout menus */}
-              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch align-center w-full">
-                <div className="flex h-full space-x-8 justify-end pr-14 w-full">
-                  {navigation.categories.map((category, index) => (
-                    <Popover key={category.name+index} className="flex">
-                      {({ open }) => (
-                        <>
-                          <div className="relative flex">
-                            <Popover.Button
-                              className={classNames(
-                                open
-                                  ? 'border-indigo-600 text-indigo-600'
-                                  : 'border-transparent  hover:text-gray-800',
-                                'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out'
-                              )}
-                            >
-                              {category.name}
-                            </Popover.Button>
-                          </div>
 
-                          <Transition
-                            as={Fragment}
-                            enter="transition ease-out duration-200"
-                            enterFrom="opacity-0"
-                            enterTo="opacity-100"
-                            leave="transition ease-in duration-150"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                          >
-                            <Popover.Panel className="absolute inset-x-0 top-full bg-white text-sm ">
-                              {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
-                              <div className="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true" />
-                              {/* Fake border when menu is open */}
-                              <div className="absolute inset-0 top-0 mx-auto h-px max-w-7xl px-8" aria-hidden="true">
-                                <div
-                                  className={classNames(
-                                    open ? 'bg-gray-200' : 'bg-transparent',
-                                    'h-px w-full transition-colors duration-200 ease-out'
-                                  )}
-                                />
-                              </div>
-
-                              <div className="relative">
-                                <div className="mx-auto max-w-7xl px-8">
-                                  <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
-                                    <div className="col-start-2 grid grid-cols-2 gap-x-8">
-                                      {category.featured.map((item, index) => (
-                                        <div key={item.name+index} className="group relative text-base sm:text-sm">
-                                          <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                            <img
-                                              src={item.imageSrc}
-                                              alt={item.imageAlt}
-                                              className="object-cover object-center"
-                                            />
-                                          </div>
-                                          <a href={item.href} className="mt-6 block font-medium ">
-                                            <span className="absolute inset-0 z-10" aria-hidden="true" />
-                                            {item.name}
-                                          </a>
-                                          <p aria-hidden="true" className="mt-1">
-                                            Shop now
-                                          </p>
-                                        </div>
-                                      ))}
-                                    </div>
-                                    <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
-                                      {category.sections.map((section, index) => (
-                                        <div key={section.name+index}>
-                                          <p id={`${section.name}-heading`} className="font-medium ">
-                                            {section.name}
-                                          </p>
-                                          <ul
-                                            role="list"
-                                            aria-labelledby={`${section.name}-heading`}
-                                            className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
-                                          >
-                                            {section.items.map((item, index) => (
-                                              <li key={item.name+index} className="flex">
-                                                <a href={item.href} className="hover:text-gray-800">
-                                                  {item.name}
-                                                </a>
-                                              </li>
-                                            ))}
-                                          </ul>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </Popover.Panel>
-                          </Transition>
-                        </>
-                      )}
-                    </Popover>
-                  ))}
-
-                  {navigation.pages.map((page, index) => (
-                    <a
-                      key={page.name+index}
-                      href={page.href}
-                      className="flex items-center text-sm font-medium  hover:text-[#003E53]"
-                    >
-                      {page.name}
-                    </a>
-                  ))}
-                </div>
-              </Popover.Group>
 
               <div className="ml-auto flex items-center">
 
@@ -990,7 +809,7 @@ const Home = () => {
                   </h1>
                   <p className="mb-9 text-[#003E53]">GreenPlanet offers sustainable cleaning products that are not only effective for your home but also contribute to a healthier planet. Embrace a greener clean and be a part of our eco-conscious journey today.</p>
                   <a className="mb-2 inline-block rounded-tl-3xl rounded-br-3xl bg-[#003E53] px-12 pt-4 pb-3.5 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#cbcbcb] transition duration-150 ease-in-out hover:bg-[#003E53]/80 hover:shadow-[0_8px_9px_-4px_rgba(203,203,203,0.3),0_4px_18px_0_rgba(203,203,203,0.2)] focus:bg-[#003E53]/80 focus:shadow-[0_8px_9px_-4px_rgba(203,203,203,0.3),0_4px_18px_0_rgba(203,203,203,0.2)] focus:outline-none focus:ring-0 active:bg-[#003E53]/80 active:shadow-[0_8px_9px_-4px_rgba(203,203,203,0.3),0_4px_18px_0_rgba(203,203,203,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(251,251,251,0.3)] dark:hover:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.1),0_4px_18px_0_rgba(251,251,251,0.05)] dark:focus:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.1),0_4px_18px_0_rgba(251,251,251,0.05)] dark:active:shadow-[0_8px_9px_-4px_rgba(251,251,251,0.1),0_4px_18px_0_rgba(251,251,251,0.05)] md:mr-2 md:mb-0"
-                      data-te-ripple-init data-te-ripple-color="light" href="#!" role="button">Get started</a>
+                      data-te-ripple-init data-te-ripple-color="light" href="#!" role="button">Discover Our Products</a>
                 </div>
                 <div className="mb-12 lg:mb-0">
                   <Image src="/hero-image.png" className="w-full" alt="" width={400} height={260} />
@@ -1067,9 +886,9 @@ const Home = () => {
                     Our products combine effectiveness with environmental sustainability, catering to all your home cleaning needs.
                   </p>
                 </div>
-                <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg bg-gray-100">
+                <div className="aspect-h-2 aspect-w-3 overflow-hidden bg-gray-100">
                   <Image
-                    src="/hero-image.png"
+                    src="/features-image.png"
                     alt=""
                     fill
                     className="object-cover object-center"
@@ -1153,7 +972,7 @@ const Home = () => {
                   <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                     <div className="relative">
                       <img
-                        src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                        src="/tm5.png"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -1163,7 +982,7 @@ const Home = () => {
                   <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                     <div className="relative">
                       <img
-                        src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                        src="/tm1.png"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -1171,7 +990,7 @@ const Home = () => {
                     </div>
                     <div className="relative">
                       <img
-                        src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80"
+                        src="/tm2.png"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -1181,7 +1000,7 @@ const Home = () => {
                   <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                     <div className="relative">
                       <img
-                        src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80"
+                        src="/tm3.png"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -1189,7 +1008,7 @@ const Home = () => {
                     </div>
                     <div className="relative">
                       <img
-                        src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
+                        src="/tm4.png"
                         alt=""
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
@@ -1295,7 +1114,7 @@ const Home = () => {
                         <div className="flex-shrink-0">
                           <img
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-01.jpg"
+                            src="/product4.png"
                             alt=""
                           />
                         </div>
@@ -1303,7 +1122,7 @@ const Home = () => {
                         <div className="mt-6 flex-shrink-0 sm:mt-0">
                           <img
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-02.jpg"
+                            src="/product3.png"
                             alt=""
                           />
                         </div>
@@ -1312,7 +1131,7 @@ const Home = () => {
                         <div className="flex-shrink-0">
                           <img
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-favorite-01.jpg"
+                            src="/product6.png"
                             alt=""
                           />
                         </div>
@@ -1320,7 +1139,7 @@ const Home = () => {
                         <div className="mt-6 flex-shrink-0 sm:mt-0">
                           <img
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-favorite-02.jpg"
+                            src="/product1.png"
                             alt=""
                           />
                         </div>
@@ -1329,7 +1148,7 @@ const Home = () => {
                         <div className="flex-shrink-0">
                           <img
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-01.jpg"
+                            src="/product2.png"
                             alt=""
                           />
                         </div>
@@ -1337,7 +1156,7 @@ const Home = () => {
                         <div className="mt-6 flex-shrink-0 sm:mt-0">
                           <img
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-02.jpg"
+                            src="/product3.png"
                             alt=""
                           />
                         </div>
