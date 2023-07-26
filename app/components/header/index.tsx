@@ -143,7 +143,7 @@ const Header = ({updatedCart}: { updatedCart: boolean}) => {
 
     
 
-    const cartItemsFromLocalStorage = localStorage.getItem('cartItems')
+    const cartItemsFromLocalStorage = typeof window !== "undefined" ? localStorage.getItem('cartItems') : null
     const cartItems = cartItemsFromLocalStorage? JSON.parse(cartItemsFromLocalStorage) : [];
 
     return (

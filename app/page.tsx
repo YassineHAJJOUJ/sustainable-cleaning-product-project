@@ -158,7 +158,7 @@ const Home = () => {
 
   const [cartItems, setCartItems] = useState<any>([])
   useEffect(() => {
-    const cartItemsFromLocalStorage = localStorage.getItem('cartItems')
+    const cartItemsFromLocalStorage = typeof window !== "undefined" ? localStorage.getItem('cartItems') : null
     const cartItemsList = cartItemsFromLocalStorage? JSON.parse(cartItemsFromLocalStorage) : [];
     setCartItems(cartItemsList)
   }, [])
