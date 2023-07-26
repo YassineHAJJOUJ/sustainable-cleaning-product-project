@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, JSX, SVGProps, useEffect, useState } from 'react'
+import { JSX,  SVGProps, use, useEffect, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, CloudArrowUpIcon, LockClosedIcon, MagnifyingGlassIcon, ServerIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
@@ -169,7 +169,7 @@ const products = [
     href: '#',
     price: '$50',
     availability: 'White and Black',
-    imageSrc: '/product1.png',
+    imageSrc: '/product1.webp',
     imageAlt: 'White fabric pouch with white zipper, black zipper pull, and black elastic loop.',
   },
   {
@@ -178,7 +178,7 @@ const products = [
     href: '#',
     price: '$140',
     availability: 'Washed Black',
-    imageSrc: '/product2.png',
+    imageSrc: '/product2.webp',
     imageAlt: 'Front of tote bag with washed black canvas body, black straps, and tan leather handles and accents.',
   },
   {
@@ -187,7 +187,7 @@ const products = [
     href: '#',
     price: '$220',
     availability: 'Blue',
-    imageSrc: '/product3.png',
+    imageSrc: '/product3.webp',
     imageAlt:
       'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
   },
@@ -197,7 +197,7 @@ const products = [
     href: '#',
     price: '$50',
     availability: 'White and Black',
-    imageSrc: '/product4.png',
+    imageSrc: '/product4.webp',
     imageAlt: 'White fabric pouch with white zipper, black zipper pull, and black elastic loop.',
   },
   {
@@ -206,7 +206,7 @@ const products = [
     href: '#',
     price: '$140',
     availability: 'Washed Black 4',
-    imageSrc: '/product5.png',
+    imageSrc: '/product5.webp',
     imageAlt: 'Front of tote bag with washed black canvas body, black straps, and tan leather handles and accents.',
   },
   {
@@ -215,7 +215,7 @@ const products = [
     href: '#',
     price: '$220',
     availability: 'Blue',
-    imageSrc: '/product6.png',
+    imageSrc: '/product6.webp',
     imageAlt:
       'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
   },
@@ -225,7 +225,7 @@ const products = [
     href: '#',
     price: '$50',
     availability: 'White and Black',
-    imageSrc: '/product7.png',
+    imageSrc: '/product7.webp',
     imageAlt: 'White fabric pouch with white zipper, black zipper pull, and black elastic loop.',
   },
   {
@@ -234,7 +234,7 @@ const products = [
     href: '#',
     price: '$140',
     availability: 'Washed Black',
-    imageSrc: '/product8.png',
+    imageSrc: '/product8.webp',
     imageAlt: 'Front of tote bag with washed black canvas body, black straps, and tan leather handles and accents.',
   },
   {
@@ -243,7 +243,7 @@ const products = [
     href: '#',
     price: '$220',
     availability: 'Blue',
-    imageSrc: '/product4.png',
+    imageSrc: '/product4.webp',
     imageAlt:
       'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
   },
@@ -253,7 +253,7 @@ const products = [
     href: '#',
     price: '$50',
     availability: 'White and Black',
-    imageSrc: '/product2.png',
+    imageSrc: '/product2.webp',
     imageAlt: 'White fabric pouch with white zipper, black zipper pull, and black elastic loop.',
   },
   {
@@ -262,7 +262,7 @@ const products = [
     href: '#',
     price: '$140',
     availability: 'Washed Black',
-    imageSrc: '/product5.png',
+    imageSrc: '/product5.webp',
     imageAlt: 'Front of tote bag with washed black canvas body, black straps, and tan leather handles and accents.',
   },
   {
@@ -271,7 +271,7 @@ const products = [
     href: '#',
     price: '$220',
     availability: 'Blue',
-    imageSrc: '/product4.png',
+    imageSrc: '/product4.webp',
     imageAlt:
       'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
   },
@@ -346,7 +346,7 @@ const featuredTestimonial = {
     name: 'Brenna Goyette',
     handle: 'brennagoyette',
     imageUrl:
-      'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=1024&h=1024&q=80',
+      '/avatar.png',
     logoUrl: 'https://tailwindui.com/img/logos/savvycal-logo-gray-900.svg',
   },
 }
@@ -359,7 +359,7 @@ const testimonials = [
           name: 'Leslie Alexander',
           handle: 'lesliealexander',
           imageUrl:
-            'https&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            '/avatar.png',
         },
       },
       {
@@ -368,7 +368,7 @@ const testimonials = [
           name: 'Leslie Alexander',
           handle: 'lesliealexander',
           imageUrl:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            '/avatar.png',
         },
       },
       // More testimonials...
@@ -380,7 +380,7 @@ const testimonials = [
           name: 'Lindsay Walton',
           handle: 'lindsaywalton',
           imageUrl:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            '/avatar.png',
         },
       },
       // More testimonials...
@@ -394,7 +394,7 @@ const testimonials = [
           name: 'Tom Cook',
           handle: 'tomcook',
           imageUrl:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            '/avatar.png',
         },
       },
       
@@ -407,7 +407,7 @@ const testimonials = [
           name: 'Leonard Krasner',
           handle: 'leonardkrasner',
           imageUrl:
-            'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            '/avatar.png',
         },
       },
       {
@@ -416,7 +416,7 @@ const testimonials = [
           name: 'Leonard Krasner',
           handle: 'leonardkrasner',
           imageUrl:
-            'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            '/avatar.png',
         },
       },
       // More testimonials...
@@ -541,131 +541,89 @@ const SHOPIFY_STORE_URL="https://greenplanet-sustainable-cleaning-products.mysho
 //   }
   
 // }
+
 import { shopifyApi } from '@shopify/shopify-api';
 import shopify from '@shopify/shopify-api'
 import Client from 'shopify-buy'
+import { StaticImport } from 'next/dist/shared/lib/get-img-props'
+import Link from 'next/link'
 const SHOPIFY_API_PUBLIC_ACCESS_TOKEN="44edaabee9bdd7fb7431f30fb89b87c2"
 const SHOPIFY_API_PRIVATE_ACCESS_TOKEN="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"
-const fetchAll = async () => {
-  // Load the access token as per instructions above
-  const storefrontAccessToken = SHOPIFY_API_PUBLIC_ACCESS_TOKEN;
-  // Shop from which we're fetching data
-  const shop = 'greenplanet-sustainable-cleaning-products.myshopify.com'; // Remove 'https://' and trailing slash from the shop URL
-  // StorefrontClient takes in the shop url and the Storefront Access Token for that shop.
-  const storefrontClient =  new Client({
-    storefrontAccessToken,
-    domain: shop,
-    apiVersion: '2023-10'
-  });
-  // Use client.query and pass your query as `data`
-  const products = await storefrontClient.product.fetchAll()
-  console.log(JSON.stringify(products));
-  return products
-}
+
 
 
 
 const Home = () => {
-  const [open, setOpen] = useState(false)
   const [productsr, setProductsr] = useState<any>([])
 
-  const fetchProductsHandler = async () => {
-    const fetchedProducts  = await fetchAll()
-    setProductsr(fetchedProducts)
-  }
+  const [cartItems, setCartItems] = useState<any>([])
+  useEffect(() => {
+    const cartItemsFromLocalStorage = localStorage.getItem('cartItems')
+    const cartItemsList = cartItemsFromLocalStorage? JSON.parse(cartItemsFromLocalStorage) : [];
+    setCartItems(cartItemsList)
+  }, [])
+  
+
+  
+
+  console.log(cartItems)
+
+  // const fetchProductsHandler = async () => {
+  //   const fetchedProducts  = await fetchAll()
+  //   //setProductsr(fetchedProducts)
+  // }
+
+  useEffect(() => {
+    const fetchAll = async () => {
+      // Load the access token as per instructions above
+      const storefrontAccessToken = SHOPIFY_API_PUBLIC_ACCESS_TOKEN;
+      // Shop from which we're fetching data
+      const shop = 'greenplanet-sustainable-cleaning-products.myshopify.com'; // Remove 'https://' and trailing slash from the shop URL
+      // StorefrontClient takes in the shop url and the Storefront Access Token for that shop.
+      const storefrontClient =  new Client({
+        storefrontAccessToken,
+        domain: shop,
+        apiVersion: '2023-10'
+      });
+      // Use client.query and pass your query as `data`
+      const products = await storefrontClient.product.fetchAll()
+      console.log(JSON.stringify(products));
+      // return products
+      setProductsr(products)
+    }
+    fetchAll()
+
+  }, [])
+  
+
+  // const cartItemsFromLocalStorage = localStorage.getItem('cartItems')
+
+
+  // if(cartItemsFromLocalStorage){
+  //   cartItems = cartItemsFromLocalStorage? JSON.parse(cartItemsFromLocalStorage) : [];
+  // } 
+  
 
   return (
     <div className="bg-white">
-      <button onClick={fetchProductsHandler} >Fetch products</button>
+      {/* <button onClick={fetchProductsHandler} >Fetch products</button>
       <ul>
         {
           productsr.map((product: any) => <li key={product.id}>{product.title}</li>)
         }
-      </ul>
-      {/* Mobile menu */}
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
-          <Transition.Child
-            as={Fragment}
-            enter="transition-opacity ease-linear duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity ease-linear duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
+      </ul> */}
 
-          <div className="fixed inset-0 z-40 flex">
-            <Transition.Child
-              as={Fragment}
-              enter="transition ease-in-out duration-300 transform"
-              enterFrom="-translate-x-full"
-              enterTo="translate-x-0"
-              leave="transition ease-in-out duration-300 transform"
-              leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full"
-            >
-              <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
-                <div className="flex px-4 pb-2 pt-5">
-                  <button
-                    type="button"
-                    className="-m-2 inline-flex items-center justify-center rounded-md p-2 "
-                    onClick={() => setOpen(false)}
-                  >
-                    <span className="sr-only">Close menu</span>
-                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-                </div>
-
-
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  {navigation.pages.map((page, index) => (
-                    <div key={page.name+index} className="flow-root">
-                      <a href={page.href} className="-m-2 block p-2 font-medium ">
-                        {page.name}
-                      </a>
-                    </div>
-                  ))}
-                </div>
-
-
-                <div className="border-t border-gray-200 px-4 py-6">
-                  <a href="#" className="-m-2 flex items-center p-2">
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-base font-medium ">CAD</span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition.Root>
 
       <header className="relative overflow-hidden">
         {/* Top navigation */}
         <nav aria-label="Top" className="relative z-20  bg-opacity-100 backdrop-blur-xl backdrop-filter bg-[#D1ECE7]">
-          <div className="mx-auto max-w-7xl pt-4 px-4 sm:px-6 lg:px-0">
+          <div className="mx-auto max-w-7xl pt-4 px-4 sm:px-6 lg:px-4 2xl:px-0">
             <div className="flex h-16 items-center">
-              <button
-                type="button"
-                className="rounded-md bg-white p-2  lg:hidden"
-                onClick={() => setOpen(true)}
-              >
-                <span className="sr-only">Open menu</span>
-                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-              </button>
 
               {/* Logo */}
-              <div className="ml-0 flex lg:ml-0 ">
-                <a href="#">
-                  <span className="sr-only">Your Company</span>
+              <div className=" flex lg:ml-0 ">
+                <Link href="/">
+                  <span className="sr-only">GreenPlanet</span>
                   <Image
                     className="h-16 w-auto"
                     src="/greenplanet-logo.svg"
@@ -673,7 +631,7 @@ const Home = () => {
                     width={222}
                     height={109}
                   />
-                </a>
+                </Link>
               </div>
 
 
@@ -682,118 +640,19 @@ const Home = () => {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
+                  <Link href="/cart" className="group -m-2 flex items-center p-2">
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0  group-hover:text-gray-500"
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium  group-hover:text-[#003E53]">0</span>
+                    <span className="ml-2 text-sm font-medium  group-hover:text-[#003E53]">{cartItems.length}</span>
                     <span className="sr-only">items in cart, view bag</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </nav>
-
-        
-
-
-
-
-
-
-
-
-        {/* Hero section */}
-        {/* <div className="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-60 lg:pt-40">
-          <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
-            <div className="sm:max-w-lg">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                Summer styles are finally here
-              </h1>
-              <p className="mt-4 text-xl text-gray-500">
-                This year, our new summer collection will shelter you from the harsh elements of a world that doesn't
-                care if you live or die.
-              </p>
-            </div>
-            <div>
-              <div className="mt-10">
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
-                >
-                  <div className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
-                    <div className="flex items-center space-x-6 lg:space-x-8">
-                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                        <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                      </div>
-                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                      </div>
-                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg"
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <a
-                  href="#"
-                  className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"
-                >
-                  Shop Collection
-                </a>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </header>
 
       <main>
@@ -812,7 +671,7 @@ const Home = () => {
                       data-te-ripple-init data-te-ripple-color="light" href="#!" role="button">Discover Our Products</a>
                 </div>
                 <div className="mb-12 lg:mb-0">
-                  <Image src="/hero-image.png" className="w-full" alt="" width={400} height={260} />
+                  <Image src="/heroimage.webp" className="w-full" alt="" width={400} height={260} />
                 </div>
               </div>
             </div>
@@ -853,20 +712,20 @@ const Home = () => {
               </div>
             </div>
             <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8">
-              {products.map((product, index) => (
-                <a key={product.id+index} href={product.href} className="group text-sm">
+              {productsr.map((product: any, index: any) => (
+                <Link key={product.id} href={`/product/${product.id.replace("gid://shopify/Product/","")}`} className="group text-sm">
                   <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
                     <Image
-                      src={product.imageSrc}
-                      alt={product.imageAlt}
+                      src={product.images[0].src}
+                      alt={product.title}
                       fill
                       className="h-full w-full object-cover object-center"
                     />
                   </div>
-                  <h3 className="mt-4 text-[#003E53] font-bold">{product.name}</h3>
-                  <p className="italic text-gray-500">{product.availability}</p>
-                  <p className="mt-2 font-medium text-[#4CA585]">{product.price}</p>
-                </a>
+                  <h3 className="mt-4 text-[#003E53] font-bold">{product.title}</h3>
+                  <p className="italic text-gray-500">in Stock</p>
+                  <p className="mt-2 font-medium text-[#4CA585]">${product.variants[0].price.amount}</p>
+                </Link>
               ))}
             </div>
           </div>
@@ -888,7 +747,7 @@ const Home = () => {
                 </div>
                 <div className="aspect-h-2 aspect-w-3 overflow-hidden bg-gray-100">
                   <Image
-                    src="/features-image.png"
+                    src="/features-image.webp"
                     alt=""
                     fill
                     className="object-cover object-center"
@@ -899,7 +758,7 @@ const Home = () => {
                 {incentives.map((incentive,index) => (
                   <div key={incentive.name+index} className="sm:flex lg:block">
                     <div className="sm:flex-shrink-0">
-                      <img className="h-16 w-16" src={incentive.imageSrc} alt="" />
+                      <Image className="h-16 w-16" src={incentive.imageSrc} alt="" width={64} height={64} />
                     </div>
                     <div className="mt-4 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
                       <h3 className="font-bold">{incentive.name}</h3>
@@ -929,7 +788,7 @@ const Home = () => {
                 <div key={incentive.name+index} className="text-center sm:flex sm:text-left lg:block lg:text-center">
                   <div className="sm:flex-shrink-0">
                     <div className="flow-root">
-                      <img className="mx-auto h-16 w-16" src={incentive.imageSrc} alt="" />
+                      <Image className="mx-auto h-16 w-16" src={incentive.imageSrc} alt="" width={64} height={64} />
                     </div>
                   </div>
                   <div className="mt-3 sm:ml-6 sm:mt-0 lg:ml-0 lg:mt-6">
@@ -971,9 +830,11 @@ const Home = () => {
                 <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
                   <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                     <div className="relative">
-                      <img
-                        src="/tm5.png"
+                      <Image
+                        src="/tm5.webp"
                         alt=""
+                        width={300}
+                        height={450}
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
@@ -981,17 +842,21 @@ const Home = () => {
                   </div>
                   <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                     <div className="relative">
-                      <img
-                        src="/tm1.png"
+                      <Image
+                        src="/tm1.webp"
                         alt=""
+                        width={300}
+                        height={450}
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
                     <div className="relative">
-                      <img
-                        src="/tm2.png"
+                      <Image
+                        src="/tm2.webp"
                         alt=""
+                        width={300}
+                        height={450}
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
@@ -999,17 +864,21 @@ const Home = () => {
                   </div>
                   <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                     <div className="relative">
-                      <img
-                        src="/tm3.png"
+                      <Image
+                        src="/tm3.webp"
                         alt=""
+                        width={300}
+                        height={450}
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                     </div>
                     <div className="relative">
-                      <img
-                        src="/tm4.png"
+                      <Image
+                        src="/tm4.webp"
                         alt=""
+                        width={300}
+                        height={450}
                         className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                       />
                       <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
@@ -1037,8 +906,10 @@ const Home = () => {
                   <p>{`“${featuredTestimonial.body}”`}</p>
                 </blockquote>
                 <figcaption className="flex items-center gap-x-4 border-t border-gray-900/10 px-6 py-4">
-                  <img
+                  <Image
                     className="h-10 w-10 flex-none rounded-full bg-gray-50"
+                    width={40}
+                    height={40}
                     src={featuredTestimonial.author.imageUrl}
                     alt=""
                   />
@@ -1046,7 +917,7 @@ const Home = () => {
                     <div className="font-semibold">{featuredTestimonial.author.name}</div>
                     <div className="">{`@${featuredTestimonial.author.handle}`}</div>
                   </div>
-                  <img className="h-10 w-auto flex-none" src={featuredTestimonial.author.logoUrl} alt="" />
+                  <Image width={40} height={40} className="h-10 w-auto flex-none" src={featuredTestimonial.author.logoUrl} alt="" />
                 </figcaption>
               </figure>
               {testimonials.map((columnGroup, columnGroupIdx) => (
@@ -1071,7 +942,7 @@ const Home = () => {
                             <p>{`“${testimonial.body}”`}</p>
                           </blockquote>
                           <figcaption className="mt-6 flex items-center gap-x-4">
-                            <img className="h-10 w-10 rounded-full bg-gray-50" src={testimonial.author.imageUrl} alt="" />
+                            <Image width={40} height={40} className="h-10 w-10 rounded-full bg-gray-50" src={testimonial.author.imageUrl} alt="" />
                             <div>
                               <div className="font-semibold">{testimonial.author.name}</div>
                               <div className="">{`@${testimonial.author.handle}`}</div>
@@ -1112,51 +983,63 @@ const Home = () => {
                     <div className="ml-24 flex min-w-max space-x-6 sm:ml-3 lg:space-x-8">
                       <div className="flex space-x-6 sm:flex-col sm:space-x-0 sm:space-y-6 lg:space-y-8">
                         <div className="flex-shrink-0">
-                          <img
+                          <Image
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="/product4.png"
+                            src="/product4.webp"
+                            width={256}
+                            height={256}
                             alt=""
                           />
                         </div>
 
                         <div className="mt-6 flex-shrink-0 sm:mt-0">
-                          <img
+                          <Image
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="/product3.png"
+                            src="/product3.webp"
+                            width={256}
+                            height={256}
                             alt=""
                           />
                         </div>
                       </div>
                       <div className="flex space-x-6 sm:-mt-20 sm:flex-col sm:space-x-0 sm:space-y-6 lg:space-y-8">
                         <div className="flex-shrink-0">
-                          <img
+                          <Image
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="/product6.png"
+                            src="/product6.webp"
+                            width={256}
+                            height={256}
                             alt=""
                           />
                         </div>
 
                         <div className="mt-6 flex-shrink-0 sm:mt-0">
-                          <img
+                          <Image
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="/product1.png"
+                            src="/product1.webp"
+                            width={256}
+                            height={256}
                             alt=""
                           />
                         </div>
                       </div>
                       <div className="flex space-x-6 sm:flex-col sm:space-x-0 sm:space-y-6 lg:space-y-8">
                         <div className="flex-shrink-0">
-                          <img
+                          <Image
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="/product2.png"
+                            src="/product2.webp"
+                            width={256}
+                            height={256}
                             alt=""
                           />
                         </div>
 
                         <div className="mt-6 flex-shrink-0 sm:mt-0">
-                          <img
+                          <Image
                             className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                            src="/product3.png"
+                            src="/product3.webp"
+                            width={256}
+                            height={256}
                             alt=""
                           />
                         </div>
@@ -1178,7 +1061,6 @@ const Home = () => {
     </div>
   )
 }
-
 
 
 

@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import {
@@ -10,6 +10,9 @@ import {
   XMarkIcon as XMarkIconOutline,
 } from '@heroicons/react/24/outline'
 import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid'
+import Image from 'next/image'
+import Header from '../components/header'
+import Link from 'next/link'
 
 const navigation = {
   categories: [
@@ -210,154 +213,188 @@ function classNames(...classes: String[]) {
     return classes.filter(Boolean).join(' ')
 }
 
+
+import fetch from 'isomorphic-fetch';
+
+const generateCheckoutLink = async (products: any[]) => {
+  const apiKey = "44edaabee9bdd7fb7431f30fb89b87c2"
+  const storeDomain = 'greenplanet-sustainable-cleaning-products.myshopify.com'
+
+  const cartData = {
+    items: products.map(product => ({ id: product.id, quantity: product.quantity })),
+  };
+
+  try {
+    const response = await fetch(`https://${storeDomain}/cart/add.js`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': apiKey,
+      },
+      body: JSON.stringify(cartData),
+    });
+
+    const cartDataResponse = await response.json();
+
+    if (response.ok) {
+      return cartDataResponse.cart_token;
+    } else {
+      throw new Error(cartDataResponse.description || 'Error adding items to cart');
+    }
+  } catch (error) {
+    console.error('Error generating checkout link:', error);
+    throw error;
+  }
+}
+
+import Client from 'shopify-buy'
+import { productCartType } from './types'
+
 const Cart = () => {
     const [open, setOpen] = useState(false)
+    // Set up state to manage cart items
+    const [cartItems, setCartItems] = useState<any>([]);
+    const [updatedToCart, setUpdatedCart] = useState<boolean>(false)
+    const [total, setTotal] = useState({ subtotal: 0, shippingEstimate: 0, taxEstimate: 0, orderTotal: 0 })
+
+    // Function to calculate the total price for an item
+    function calculateTotalPrice(item: { price: number; quantity: number }) {
+      return item.price * item.quantity;
+    }
+
+    // Function to calculate the total price of the entire array
+    function calculateTotalPrices(items: any[]) {
+      return items.reduce((total: number, item: any) => total + calculateTotalPrice(item), 0);
+    }
+
+    const handleTotalChanges = (cartItemsList: any[]) => {
+      const subtotal = calculateTotalPrices(cartItemsList);
+      const shippingEstimate = 5
+      const taxEstimate = subtotal*0.13
+      const orderTotal = subtotal + taxEstimate + shippingEstimate
+      setTotal({ subtotal, shippingEstimate, taxEstimate, orderTotal })
+    }
+
+    useEffect(() => {
+      const cartItemsFromLocalStorage = localStorage.getItem('cartItems')
+      const cartItemsList = cartItemsFromLocalStorage? JSON.parse(cartItemsFromLocalStorage) : [];
+      setCartItems(cartItemsList)
+      console.log(cartItemsList)
+      // Calculate the total price
+      handleTotalChanges(cartItemsList)
+    }, [])
+    
+
+    const removeFromCart = (productId: any ) => {
+      // alert(productId)
+      // Filter out the item with the given productId and create a new cartItems array
+      const cartItemsFromLocalStorage = localStorage.getItem('cartItems')
+
+      const cartItemsList = [...cartItems]
+      const updatedCartItems = cartItemsList.filter((item: { id: any }) => item.id !== productId);
+      setCartItems(updatedCartItems)
+
+      // alert(updatedCartItems)
+    
+      // Save the updated cart items to local storage
+      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+
+      setUpdatedCart(true)
+
+      handleTotalChanges(updatedCartItems)
+    
+      // You can also provide feedback to the user that the item was removed successfully
+      // alert('Item removed from cart successfully!');
+    };
+
+    const changeQuantity = (itemId: String, newQuantity: number) => {
+      const cartItemsList: any = [...cartItems]
+      const itemIndex = cartItemsList.findIndex((cartItemsList: any) => cartItemsList.id === itemId);
+      if (itemIndex !== -1) {
+        cartItemsList[itemIndex].quantity = newQuantity;
+      } else {
+        console.error('Item not found');
+      }
+      return cartItemsList;
+    }
+
+    // const generateLink = async () => {
+    //   try {
+    //     const checkoutToken = await generateCheckoutLink(cartItems);
+    //     const checkoutUrl = `https://greenplanet-sustainable-cleaning-products.myshopify.com/checkout/${checkoutToken}`;
+    //     console.log('Checkout URL:', checkoutUrl);
+    //     alert(checkoutUrl)
+    //     // window.location.href = `https://greenplanet-sustainable-cleaning-products.myshopify.com/checkout/${checkoutUrl}`;
+    //     return checkoutUrl
+    //     // You can use the checkout URL to redirect the user to the checkout page
+    //   } catch (error) {
+    //     console.error('Error generating checkout link:', error);
+    //     return error
+    //   }
+    // }
+    
+    const handleQuantityChange = (productId: String, quantity: number) => {
+      const res = changeQuantity(productId, quantity);
+      setCartItems(res)
+      handleTotalChanges(cartItems)
+    }
+
+    const goToCheckoutHandler = async () => {
+      //alert(generateLink())
+      // c1-b984dcfd7d7d8ca1d6d3de1fba7f5724
+      const SHOPIFY_API_PUBLIC_ACCESS_TOKEN="44edaabee9bdd7fb7431f30fb89b87c2"
+      const SHOPIFY_API_PRIVATE_ACCESS_TOKEN="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"
+      const checkoutId = 'gid://shopify/Checkout/c1-b984dcfd7d7d8ca1d6d3de1fba7f5724'; // ID of an existing checkout
+      
+      const lineItemsToAdd = cartItems.map((product: productCartType) => ({ variantId: `${product.productVariant}`, quantity: product.quantity }) );
+      // for (let index = 0; index < lineItemsToAdd2.length; index++) {
+      //   lineItemsToAdd.push(lineItemsToAdd2[index])
+      // }
+      
+      // console.log('lineItemsToAdd',lineItemsToAdd)
+      // Load the access token as per instructions above
+      const storefrontAccessToken = SHOPIFY_API_PUBLIC_ACCESS_TOKEN;
+      // Shop from which we're fetching data
+      const shop = 'greenplanet-sustainable-cleaning-products.myshopify.com'; // Remove 'https://' and trailing slash from the shop URL
+      // StorefrontClient takes in the shop url and the Storefront Access Token for that shop.
+      const storefrontClient =  new Client({
+        storefrontAccessToken,
+        domain: shop,
+        apiVersion: '2023-10'
+      });
+      // Create an empty checkout
+      storefrontClient.checkout.create().then(
+        (checkout) => {
+          // Do something with the checkout
+          console.log(checkout.id);
+          // Add an item to the checkout
+          // storefrontClient.checkout.addLineItems(checkout.id, lineItemsToAdd2).then((checkout2) => {
+          //   // Do something with the updated checkout
+          //   console.log(checkout2.lineItems); // Array with one additional line item
+          // })
+          storefrontClient.checkout.addLineItems(checkout.id, lineItemsToAdd).then((checkout2) => {
+             // Do something with the updated checkout
+             console.log(checkout2.totalPrice); // Array with one additional line item
+            })
+          // console.log(updateLineItems.webUrl);
+          window.location.href = checkout.webUrl
+        })
+
+      
+      // generateLink()
+      //alert(checkoutUrl)
+      // window.location.href = "https://greenplanet-sustainable-cleaning-products.myshopify.com/checkouts/cn/c1-b984dcfd7d7d8ca1d6d3de1fba7f5724/"
+    }
+
+
 
     return (
         <div className="bg-white">
-        {/* Mobile menu */}
-        <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
-            <Transition.Child
-                as={Fragment}
-                enter="transition-opacity ease-linear duration-300"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="transition-opacity ease-linear duration-300"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-            >
-                <div className="fixed inset-0 bg-black bg-opacity-25" />
-            </Transition.Child>
 
-            <div className="fixed inset-0 z-40 flex">
-                <Transition.Child
-                as={Fragment}
-                enter="transition ease-in-out duration-300 transform"
-                enterFrom="-translate-x-full"
-                enterTo="translate-x-0"
-                leave="transition ease-in-out duration-300 transform"
-                leaveFrom="translate-x-0"
-                leaveTo="-translate-x-full"
-                >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl">
-                    <div className="flex px-4 pb-2 pt-5">
-                    <button
-                        type="button"
-                        className="-m-2 inline-flex items-center justify-center rounded-md p-2 text-[#003E53]"
-                        onClick={() => setOpen(false)}
-                    >
-                        <span className="sr-only">Close menu</span>
-                        <XMarkIconOutline className="h-6 w-6" aria-hidden="true" />
-                    </button>
-                    </div>
-
-                    {/* Links */}
-                    <Tab.Group as="div" className="mt-2">
-                    <div className="border-b border-gray-200">
-                        <Tab.List className="-mb-px flex space-x-8 px-4">
-                        {navigation.categories.map((category) => (
-                            <Tab
-                            key={category.name}
-                            className={({ selected }) =>
-                                classNames(
-                                selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-[#003E53]',
-                                'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium'
-                                )
-                            }
-                            >
-                            {category.name}
-                            </Tab>
-                        ))}
-                        </Tab.List>
-                    </div>
-                    <Tab.Panels as={Fragment}>
-                        {navigation.categories.map((category) => (
-                        <Tab.Panel key={category.name} className="space-y-10 px-4 pb-8 pt-10">
-                            <div className="grid grid-cols-2 gap-x-4">
-                            {category.featured.map((item) => (
-                                <div key={item.name} className="group relative text-sm">
-                                <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
-                                    <img src={item.imageSrc} alt={item.imageAlt} className="object-cover object-center" />
-                                </div>
-                                <a href={item.href} className="mt-6 block font-medium text-[#003E53]">
-                                    <span className="absolute inset-0 z-10" aria-hidden="true" />
-                                    {item.name}
-                                </a>
-                                <p aria-hidden="true" className="mt-1">
-                                    Shop now
-                                </p>
-                                </div>
-                            ))}
-                            </div>
-                            {category.sections.map((section) => (
-                            <div key={section.name}>
-                                <p id={`${category.id}-${section.id}-heading-mobile`} className="font-medium text-[#003E53]">
-                                {section.name}
-                                </p>
-                                <ul
-                                role="list"
-                                aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
-                                className="mt-6 flex flex-col space-y-6"
-                                >
-                                {section.items.map((item) => (
-                                    <li key={item.name} className="flow-root">
-                                    <a href={item.href} className="-m-2 block p-2 text-[#003E53]">
-                                        {item.name}
-                                    </a>
-                                    </li>
-                                ))}
-                                </ul>
-                            </div>
-                            ))}
-                        </Tab.Panel>
-                        ))}
-                    </Tab.Panels>
-                    </Tab.Group>
-
-                    <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                    {navigation.pages.map((page) => (
-                        <div key={page.name} className="flow-root">
-                        <a href={page.href} className="-m-2 block p-2 font-medium text-[#003E53]">
-                            {page.name}
-                        </a>
-                        </div>
-                    ))}
-                    </div>
-
-                    <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                    <div className="flow-root">
-                        <a href="#" className="-m-2 block p-2 font-medium text-[#003E53]">
-                        Sign in
-                        </a>
-                    </div>
-                    <div className="flow-root">
-                        <a href="#" className="-m-2 block p-2 font-medium text-[#003E53]">
-                        Create account
-                        </a>
-                    </div>
-                    </div>
-
-                    <div className="border-t border-gray-200 px-4 py-6">
-                    <a href="#" className="-m-2 flex items-center p-2">
-                        <img
-                        src="https://tailwindui.com/img/flags/flag-canada.svg"
-                        alt=""
-                        className="block h-auto w-5 flex-shrink-0"
-                        />
-                        <span className="ml-3 block text-base font-medium text-[#003E53]">CAD</span>
-                        <span className="sr-only">, change currency</span>
-                    </a>
-                    </div>
-                </Dialog.Panel>
-                </Transition.Child>
-            </div>
-            </Dialog>
-        </Transition.Root>
-
-
+        <Header updatedCart />
 
         <main className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
+
             <h1 className="text-3xl font-bold tracking-tight  sm:text-4xl">Shopping Cart</h1>
 
             <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
@@ -367,73 +404,65 @@ const Cart = () => {
                 </h2>
 
                 <ul role="list" className="divide-y divide-[#E6F2F0] border-b border-t border-[#E6F2F0]">
-                {products.map((product, productIdx) => (
-                    <li key={product.id} className="flex py-6 sm:py-10">
-                    <div className="flex-shrink-0">
-                        <img
-                        src={product.imageSrc}
-                        alt={product.imageAlt}
-                        className="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48"
-                        />
-                    </div>
+                {cartItems.map((item: any) => (
 
-                    <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-                        <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
-                        <div>
-                            <div className="flex justify-between">
-                            <h3 className="text-sm">
-                                <a href={product.href} className="font-medium  hover:text-[#003E53]/90">
-                                {product.name}
-                                </a>
-                            </h3>
-                            </div>
-                            <div className="mt-1 flex text-sm">
-                            <p className="">{product.color}</p>
-                            {product.size ? (
-                                <p className="ml-4 border-l border-[#E6F2F0] pl-4 ">{product.size}</p>
-                            ) : null}
-                            </div>
-                            <p className="mt-1 text-sm font-medium text-[#003E53]">{product.price}</p>
-                        </div>
+                  <li key={item.id} className="flex py-6 sm:py-10">
+                    <div className='text-3xl'>{cartItems.variantId}</div>
+                      <div className="flex-shrink-0">
+                          <Image
+                            width={300}
+                            height={450}
+                            src={item.imageURI}
+                            alt={""}
+                            className="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48"
+                          />
+                      </div>
+                      <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+                          <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+                          <div>
+                              <div className="flex justify-between">
+                              <h3 className="text-sm">
+                                  <Link href={`/product/${item.id}`} className="font-medium  hover:text-[#003E53]/90">
+                                  {item.title}
+                                  </Link>
+                              </h3>
+                              </div>
+                              <div className="mt-1 flex text-sm">
+                              </div>
+                              <p className="mt-1 text-sm font-medium text-[#003E53]">${item.price}</p>
+                          </div>
 
-                        <div className="mt-4 sm:mt-0 sm:pr-9">
-                            <label htmlFor={`quantity-${productIdx}`} className="sr-only">
-                            Quantity, {product.name}
-                            </label>
-                            <select
-                            id={`quantity-${productIdx}`}
-                            name={`quantity-${productIdx}`}
-                            className="max-w-full rounded-md border border-[#E6F2F0] py-1.5 text-left text-base font-medium leading-5  shadow-sm focus:border-[#4CA585] focus:outline-none focus:ring-1 focus:ring-[#4CA585] sm:text-sm"
-                            >
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                            <option value={6}>6</option>
-                            <option value={7}>7</option>
-                            <option value={8}>8</option>
-                            </select>
+                          <div className="mt-4 sm:mt-0 sm:pr-9">
+                              <label htmlFor={`quantity-${"product one"}`} className="sr-only">
+                              Quantity, {"product one"}
+                              </label>
+                              <select
+                              id={`quantity-${"Product one"}`}
+                              name={`quantity-${"Product one"}`}
+                              value={item.quantity}
+                              onChange={(e) => handleQuantityChange(item.id.toString(), parseInt(e.target.value))}
+                              className="max-w-full rounded-md border border-[#E6F2F0] py-1.5 text-left text-base font-medium leading-5  shadow-sm focus:border-[#4CA585] focus:outline-none focus:ring-1 focus:ring-[#4CA585] sm:text-sm"
+                              >
+                              <option value={1}>1</option>
+                              <option value={2}>2</option>
+                              <option value={3}>3</option>
+                              <option value={4}>4</option>
+                              <option value={5}>5</option>
+                              <option value={6}>6</option>
+                              <option value={7}>7</option>
+                              <option value={8}>8</option>
+                              </select>
 
-                            <div className="absolute right-0 top-0">
-                            <button type="button" className="-m-2 inline-flex p-2 text-[#003E53] hover:text-[#003E53]/90">
-                                <span className="sr-only">Remove</span>
-                                <XMarkIconMini className="h-5 w-5" aria-hidden="true" />
-                            </button>
-                            </div>
-                        </div>
-                        </div>
+                              <div className="absolute right-0 top-0">
+                              <button type="button" onClick={() => removeFromCart(item.id.toString())} className="-m-2 inline-flex p-2 text-[#003E53] hover:text-[#003E53]/90">
+                                  <span className="sr-only">Remove</span>
+                                  <XMarkIconMini className="h-5 w-5" aria-hidden="true" />
+                              </button>
+                              </div>
+                          </div>
+                          </div>
 
-                        <p className="mt-4 flex space-x-2 text-sm text-[#003E53]">
-                        {product.inStock ? (
-                            <CheckIcon className="h-5 w-5 flex-shrink-0 text-green-500" aria-hidden="true" />
-                        ) : (
-                            <ClockIcon className="h-5 w-5 flex-shrink-0 text-gray-300" aria-hidden="true" />
-                        )}
-
-                        <span>{product.inStock ? 'In stock' : `Ships in ${product.leadTime}`}</span>
-                        </p>
-                    </div>
+                      </div>
                     </li>
                 ))}
                 </ul>
@@ -451,7 +480,7 @@ const Cart = () => {
                 <dl className="mt-6 space-y-4">
                 <div className="flex items-center justify-between">
                     <dt className="text-sm text-[#003E53]">Subtotal</dt>
-                    <dd className="text-sm font-medium text-[#003E53]">$99.00</dd>
+                    <dd className="text-sm font-medium text-[#003E53]">${total.subtotal.toFixed(2) }</dd>
                 </div>
                 <div className="flex items-center justify-between border-t border-[#E6F2F0] pt-4">
                     <dt className="flex items-center text-sm text-[#003E53]">
@@ -461,7 +490,7 @@ const Cart = () => {
                         <QuestionMarkCircleIcon className="h-5 w-5" aria-hidden="true" />
                     </a>
                     </dt>
-                    <dd className="text-sm font-medium text-[#003E53]">$5.00</dd>
+                    <dd className="text-sm font-medium text-[#003E53]">${total.shippingEstimate.toFixed(2) }</dd>
                 </div>
                 <div className="flex items-center justify-between border-t border-[#E6F2F0] pt-4">
                     <dt className="flex text-sm text-[#003E53]">
@@ -471,17 +500,18 @@ const Cart = () => {
                         <QuestionMarkCircleIcon className="h-5 w-5" aria-hidden="true" />
                     </a>
                     </dt>
-                    <dd className="text-sm font-medium text-[#003E53]">$8.32</dd>
+                    <dd className="text-sm font-medium text-[#003E53]">${total.taxEstimate.toFixed(2) }</dd>
                 </div>
                 <div className="flex items-center justify-between border-t border--[#E6F2F0] pt-4">
                     <dt className="text-base font-medium text-[#003E53]">Order total</dt>
-                    <dd className="text-base font-medium text-[#003E53]">$112.32</dd>
+                    <dd className="text-base font-medium text-[#003E53]">${total.orderTotal.toFixed(2) }</dd>
                 </div>
                 </dl>
 
                 <div className="mt-6">
                 <button
-                    type="submit"
+                    type="button"
+                    onClick={goToCheckoutHandler}
                     className="w-full rounded-tl-3xl rounded-br-3xl border border-transparent bg-[#003E53] px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-[#003E53]/80 focus:outline-none focus:ring-2 focus:ring-[#003E53]/80 focus:ring-offset-2 focus:ring-offset-gray-50"
                 >
                     Checkout
@@ -498,3 +528,5 @@ const Cart = () => {
 }
 
 export default Cart
+
+
