@@ -73,7 +73,7 @@ const Product = ({params}: any) => {
   
     fetchProduct(params.slug)
     
-  }, [])
+  }, [params.slug])
 
   useEffect( () => {
     const SHOPIFY_API_PUBLIC_ACCESS_TOKEN="44edaabee9bdd7fb7431f30fb89b87c2"
@@ -316,8 +316,8 @@ const Product = ({params}: any) => {
 
                   <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                       {featuredProducts.map((relatedProduct: any) => (
-                        <Link href={`/product/${relatedProduct.id.replace("gid://shopify/Product/","")}`} >
-                          <div key={relatedProduct.id}  className="group relative">
+                        <Link key={relatedProduct.id} href={`/product/${relatedProduct.id.replace("gid://shopify/Product/","")}`} >
+                          <div   className="group relative">
                               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80 bg-green-400">
                               <Image
                                   height={400}

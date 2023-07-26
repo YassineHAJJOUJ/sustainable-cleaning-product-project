@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Header from '../components/header'
 import Link from 'next/link'
 
+
 import Client from 'shopify-buy'
 import { productCartType } from './types'
 
@@ -40,7 +41,20 @@ const Cart = () => {
       setCartItems(cartItemsList)
       console.log(cartItemsList)
       // Calculate the total price
-      handleTotalChanges(cartItemsList)
+
+      // Function to calculate the total price of the entire array
+      function calculateTotalPricesFunc(items: any[]) {
+        return items.reduce((total: number, item: any) => total + calculateTotalPrice(item), 0);
+      }
+      
+      const handleTotalChangesfunc = (cartItemsList: any[]) => {
+        const subtotal = calculateTotalPricesFunc(cartItemsList);
+        const shippingEstimate = 5
+        const taxEstimate = subtotal*0.13
+        const orderTotal = subtotal + taxEstimate + shippingEstimate
+        setTotal({ subtotal, shippingEstimate, taxEstimate, orderTotal })
+      }
+      handleTotalChangesfunc(cartItemsList)
     }, [])
     
 
