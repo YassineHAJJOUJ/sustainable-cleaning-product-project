@@ -104,7 +104,7 @@ const Product = ({params}: any) => {
     const addToCart = (product: productCartType)  => {
       // Get the existing cart items from local storage
 
-      const cartItemsFromLocalStorage = window?.localStorage?.getItem('cartItems')
+      const cartItemsFromLocalStorage = typeof window !== "undefined" ? window?.localStorage?.getItem('cartItems') : null
       const existingCartItems = cartItemsFromLocalStorage? JSON.parse(cartItemsFromLocalStorage) : [];
     
       // Check if the product is already in the cart
