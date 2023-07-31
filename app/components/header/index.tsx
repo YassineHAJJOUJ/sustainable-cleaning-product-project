@@ -139,13 +139,17 @@ function classNames(...classes: string[]) {
 
 const Header = ({updatedCart}: { updatedCart: boolean}) => {
     const [open, setOpen] = useState(false)
+    const [totalCart, setTotalCart] = useState(0)
 
 
+    useEffect(() => {
+      const cartItemsFromLocalStorage = typeof window !== "undefined" ? localStorage.getItem('cartItems') : null
+      const cartItems = cartItemsFromLocalStorage? JSON.parse(cartItemsFromLocalStorage) : [];
     
-
-    const cartItemsFromLocalStorage = typeof window !== "undefined" ? localStorage.getItem('cartItems') : null
-    const cartItems = cartItemsFromLocalStorage? JSON.parse(cartItemsFromLocalStorage) : [];
-
+      setTotalCart(cartItems.length)
+      
+    }, [])
+    
     return (
         <>
 
@@ -179,7 +183,7 @@ const Header = ({updatedCart}: { updatedCart: boolean}) => {
                             className="h-6 w-6 flex-shrink-0  group-hover:text-text-[#003E53]/80"
                             aria-hidden="true"
                             />
-                            <span className="ml-2 text-sm font-medium text-[#003E53] group-hover:text-[#003E53]/80">{cartItems.length}</span>
+                            <span className="ml-2 text-sm font-medium text-[#003E53] group-hover:text-[#003E53]/80">{totalCart}</span>
                             <span className="sr-only">items in cart, view bag</span>
                         </Link>
                         </div>
